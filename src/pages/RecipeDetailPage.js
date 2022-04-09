@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Container, Spinner, Alert, Row, Col, List } from 'reactstrap';
 
 import { api } from '../api';
@@ -31,6 +31,9 @@ export function RecipeDetailPage() {
   return (
     <Container>
       <h1>{recipe.title}</h1>
+      <Link to={`/recipe/${slug}/RecipeEditPage`}>
+        <button>Upraviť recept</button>
+      </Link>
       <Row>
         <Col lg={4}>
           <h5>{recipe.preparationTime} min</h5>
