@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Spinner, Alert, Row, Col, List } from 'reactstrap';
+import { NewRecipePage } from '../pages/NewRecipePage';
 
 import { api } from '../api';
 
@@ -31,7 +32,7 @@ export function RecipeDetailPage() {
   return (
     <Container>
       <h1>{recipe.title}</h1>
-      <Link to={`/recipe/${slug}/RecipeEditPage`}>
+      <Link to={`/recipe/${slug}/NewRecipePage`}>
         <button>Upraviť recept</button>
       </Link>
       <Row>
