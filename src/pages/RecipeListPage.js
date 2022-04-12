@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Container, Spinner, Alert } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import { api } from '../api';
 import { SearchInput } from '../components/SearchInput';
 import { RecipesList } from '../components/RecipesList';
+import { NewRecipePage } from '../pages/NewRecipePage';
 
 export function RecipeListPage() {
   const [recipes, setRecipes] = useState([]);
@@ -28,6 +30,9 @@ export function RecipeListPage() {
   return (
     <Container>
       <h1>Recepty</h1>
+      <Link to={`/recipe/NewRecipePage`}>
+        <button>Pridať nový recept</button>
+      </Link>
       <SearchInput
         className="mb-4"
         value={searchValue}
