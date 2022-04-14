@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Spinner, Alert, Row, Col, List } from 'reactstrap';
-
 import { api } from '../api';
+import { RecipeListPage } from './RecipeListPage';
 
 export function RecipeDetailPage() {
-  const { slug } = useParams();
+  const { slug, id } = useParams();
   const [recipe, setRecipe] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
@@ -19,6 +19,26 @@ export function RecipeDetailPage() {
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, [slug]);
+
+  const handleDeleteRecipe = (event) => {
+    event.preventDefault();
+    api
+      .delete(`/recipes/${recipe._id}`)
+      // .then(() => {
+      //   history.push(`/recipes`);
+      // })
+      .catch((error) => setError(error));
+  };
+
+  // const handleDeleteRecipe = (event) => {
+  //   api
+  //     .delete(`/recipes/${id}`)
+  //     // .then((res) => {
+  //     //   <RecipeListPage />;
+  //     //   console.log('deleted');
+  //     // })
+  //     .catch((error) => setError(error));
+  // };
 
   if (isLoading) {
     return <Spinner />;
@@ -34,6 +54,7 @@ export function RecipeDetailPage() {
       <Link to={`/recipe/${slug}/RecipeEditPage`}>
         <button>Upraviť recept</button>
       </Link>
+      <button onClick={handleDeleteRecipe}>Vymazať recept</button>
       <Row>
         <Col lg={4}>
           <h5>{recipe.preparationTime} min</h5>

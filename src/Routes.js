@@ -10,11 +10,10 @@ export function Routes() {
   return (
     <RouterRoutes>
       <Route index element={<RecipeListPage />} />
-      <Route path="*" element={<NotFoundPage />} />
       <Route path="/recipe/NewRecipePage" element={<NewRecipePage />} />
       <Route path="/recipe/:slug" element={<RecipeDetailPage />} />
-      <Route path="*" element={<NotFoundPage />} />
       <Route path="/recipe/:slug/RecipeEditPage" element={<RecipeEditPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </RouterRoutes>
   );
 }

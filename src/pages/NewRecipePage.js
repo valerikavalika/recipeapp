@@ -38,16 +38,6 @@ export function NewRecipePage() {
     console.log(newRecipe);
   }
 
-  // useEffect(() => {
-  //   setLoading(true);
-
-  //   api
-  //     .get('/recipes')
-  //     .then((res) => setRecipes(res.data))
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // }, []);
-
   return (
     <Container>
       <h2>Vytvoriť nový recept</h2>
@@ -72,11 +62,6 @@ export function NewRecipePage() {
       <button onClick={(event) => handleNewRecipe(event.target.value)}>
         Vytvoriť
       </button>
-
-      {/* {isLoading && <Spinner className="mb-4" />}
-      {error && (
-        <Alert color="danger">Vyskytla se chyba při načítání dat</Alert>
-      )} */}
     </Container>
   );
 }
