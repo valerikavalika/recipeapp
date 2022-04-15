@@ -8,7 +8,6 @@ export function RecipeEditPage() {
   const [recipe, setRecipe] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [updateRecipe, setUpdateRecipe] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -22,7 +21,7 @@ export function RecipeEditPage() {
 
   const handleUpdateRecipe = (event) => {
     api
-      .post(`/recipes/${updateRecipe._id}`, updateRecipe)
+      .post(`/recipes/${recipe._id}`, recipe)
       .catch((error) => setError(error));
   };
 
@@ -31,31 +30,15 @@ export function RecipeEditPage() {
     setRecipe({
       ...recipe,
       title: e.target.value,
-      // slug: slugify(recipe.title),
     });
-    setUpdateRecipe(recipe);
-    console.log(updateRecipe);
   }
 
-  // const slugify = function (text) {
-  //   console.log('Text:', text);
-  //   return text
-  //     .toString()
-  //     .toLowerCase()
-  //     .replace(/\s+/g, '-') // Replace spaces with -
-  //     .replace(/[^\w-]+/g, '') // Remove all non-word chars
-  //     .replace(/--+/g, '-') // Replace multiple - with single -
-  //     .replace(/^-+/, '') // Trim - from start of text
-  //     .replace(/-+$/, ''); // Trim - from end of text
-  // };
   function handleUpdatePreparationTime(e) {
     e.preventDefault();
     setRecipe({
       ...recipe,
       preparationTime: e.target.value,
     });
-    console.log(updateRecipe);
-    setUpdateRecipe(recipe);
   }
   function handleUpdateDirections(e) {
     e.preventDefault();
@@ -63,8 +46,6 @@ export function RecipeEditPage() {
       ...recipe,
       directions: e.target.value,
     });
-    console.log(updateRecipe);
-    setUpdateRecipe(recipe);
   }
 
   if (isLoading) {
