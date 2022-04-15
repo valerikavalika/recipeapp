@@ -3,6 +3,14 @@ import { Row, Col } from 'reactstrap';
 import { RecipeCard } from './RecipeCard';
 
 export function RecipesList({ recipes }) {
+  // function timeConvert(recipe.preparationTime) {
+  //   const num = recipe.preparationTime;
+  //   const hours = (num / 60);
+  //   var rhours = Math.floor(hours);
+  //   var minutes = (hours - rhours) * 60;
+  //   var rminutes = Math.round(minutes);
+  //   return rhours + "h" + rminutes + " min";
+  //   }
   return (
     <Row className="gy-4">
       {recipes.map((recipe) => (
