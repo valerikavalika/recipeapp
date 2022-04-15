@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Container, Spinner, Alert, Row, Col, List } from 'reactstrap';
 import { api } from '../api';
 import { RecipeListPage } from './RecipeListPage';
@@ -9,6 +9,7 @@ export function RecipeDetailPage() {
   const [recipe, setRecipe] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -22,12 +23,8 @@ export function RecipeDetailPage() {
 
   const handleDeleteRecipe = (event) => {
     event.preventDefault();
-    api
-      .delete(`/recipes/${recipe._id}`)
-      // .then(() => {
-      //   history.push(`/recipes`);
-      // })
-      .catch((error) => setError(error));
+    api.delete(`/recipes/${recipe._id}`).catch((error) => setError(error));
+    navigate(`/`), { replace: true };
   };
 
   // const handleDeleteRecipe = (event) => {

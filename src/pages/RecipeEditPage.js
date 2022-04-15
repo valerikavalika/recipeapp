@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Container, Spinner, Alert, Input } from 'reactstrap';
 import { api } from '../api';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export function RecipeEditPage() {
   const { slug, id } = useParams();
   const [recipe, setRecipe] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +24,7 @@ export function RecipeEditPage() {
     api
       .post(`/recipes/${recipe._id}`, recipe)
       .catch((error) => setError(error));
+    navigate(`/`), { replace: true };
   };
 
   function handleUpdateTitle(e) {
