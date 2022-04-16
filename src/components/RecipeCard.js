@@ -15,7 +15,10 @@ export function RecipeCard({ title, preparationTime, slug, sideDish }) {
 
   return (
     <Card className="h-100">
-      <Link to={`/recipe/${slug}`}>
+      <Link
+        style={{ textDecoration: 'none', color: 'black' }}
+        to={`/recipe/${slug}`}
+      >
         <CardImg src={placeholder} alt="Preview" top />
         <CardBody>
           <CardTitle tag="h5">{title}</CardTitle>

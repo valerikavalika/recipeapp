@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Container, Spinner, Alert, Row, Col, List } from 'reactstrap';
+import {
+  Container,
+  Spinner,
+  Alert,
+  Row,
+  Col,
+  List,
+  Button,
+  ButtonGroup,
+} from 'reactstrap';
 import { api } from '../api';
 import { RecipeListPage } from './RecipeListPage';
 
@@ -27,16 +36,6 @@ export function RecipeDetailPage() {
     navigate(`/`), { replace: true };
   };
 
-  // const handleDeleteRecipe = (event) => {
-  //   api
-  //     .delete(`/recipes/${id}`)
-  //     // .then((res) => {
-  //     //   <RecipeListPage />;
-  //     //   console.log('deleted');
-  //     // })
-  //     .catch((error) => setError(error));
-  // };
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -47,11 +46,19 @@ export function RecipeDetailPage() {
 
   return (
     <Container>
-      <h1>{recipe.title}</h1>
-      <Link to={`/recipe/${slug}/RecipeEditPage`}>
-        <button>Upraviť recept</button>
-      </Link>
-      <button onClick={handleDeleteRecipe}>Vymazať recept</button>
+      <div style={{ display: 'flex' }}>
+        <h1>{recipe.title}</h1>
+        <div style={{ marginLeft: 'auto' }}>
+          <Link to={`/recipe/${slug}/RecipeEditPage`}>
+            <Button style={{ marginRight: '20px' }} color="secondary">
+              Upraviť recept
+            </Button>
+          </Link>
+          <Button color="danger" onClick={handleDeleteRecipe}>
+            Vymazať recept
+          </Button>
+        </div>
+      </div>
       <Row>
         <Col lg={4}>
           <h5>{recipe.preparationTime} min</h5>

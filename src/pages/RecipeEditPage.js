@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Container, Spinner, Alert, Input } from 'reactstrap';
+import {
+  Container,
+  Spinner,
+  Alert,
+  Input,
+  Row,
+  Col,
+  Button,
+  ButtonGroup,
+} from 'reactstrap';
 import { api } from '../api';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -27,6 +36,10 @@ export function RecipeEditPage() {
     navigate(`/`), { replace: true };
   };
 
+  const handleGoBack = (event) => {
+    navigate(`/`), { replace: true };
+  };
+
   function handleUpdateTitle(e) {
     e.preventDefault();
     setRecipe({
@@ -42,6 +55,28 @@ export function RecipeEditPage() {
       preparationTime: e.target.value,
     });
   }
+  function handleUpdateServingCount(e) {
+    e.preventDefault();
+    setRecipe({
+      ...recipe,
+      servingCount: e.target.value,
+    });
+  }
+  function handleUpdateSideDish(e) {
+    e.preventDefault();
+    setRecipe({
+      ...recipe,
+      sideDish: e.target.value,
+    });
+  }
+
+  // function handleUpdateIngredients(e) {
+  //   e.preventDefault();
+  //   setRecipe({
+  //     ...recipe,
+  //     ingredients: e.target.value,
+  //   });
+  // }
   function handleUpdateDirections(e) {
     e.preventDefault();
     setRecipe({
@@ -60,26 +95,68 @@ export function RecipeEditPage() {
 
   return (
     <Container>
-      <h1>{recipe.title}</h1>
-      <Input
+      <div style={{ display: 'flex' }}>
+        <h1>{recipe.title}</h1>
+        <div style={{ marginLeft: 'auto' }}>
+          <Button
+            style={{ marginRight: '20px' }}
+            color="success"
+            onClick={handleUpdateRecipe}
+          >
+            Uložiť
+          </Button>
+          <Button color="secondary" onClick={handleGoBack}>
+            Zrušiť
+          </Button>
+        </div>
+      </div>
+      <Row>
+        <Col lg={12}>
+          <Input
+            type="text"
+            className="UpdateRecipeTitleInput"
+            value={recipe.title}
+            onChange={handleUpdateTitle}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={4}>
+          <Input
+            type="number"
+            className="UpdateRecipepreparationTimeInput"
+            value={recipe.preparationTime}
+            onChange={handleUpdatePreparationTime}
+          />
+          <Input
+            type="number"
+            className="UpdateRecipeServingCountInput"
+            value={recipe.servingCount}
+            onChange={handleUpdateServingCount}
+          />
+          <Input
+            type="text"
+            className="UpdateRecipeSideDishInput"
+            value={recipe.sideDish}
+            onChange={handleUpdateSideDish}
+          />
+          {/* <Input
         type="text"
-        className="UpdateRecipeTitleInput"
-        value={recipe.title}
-        onChange={handleUpdateTitle}
-      />
-      <Input
-        type="number"
-        className="UpdateRecipepreparationTimeInput"
-        value={recipe.preparationTime}
-        onChange={handleUpdatePreparationTime}
-      />
-      <Input
-        type="text"
-        className="UpdateRecipeDirectionsInput"
-        value={recipe.directions}
-        onChange={handleUpdateDirections}
-      />
-      <button onClick={handleUpdateRecipe}>Uložiť</button>
+        className="UpdateRecipeIngredientsInput"
+        value={recipe.ingredients}
+        onChange={handleUpdateIngredients}
+      /> */}
+        </Col>
+        <Col lg={8}>
+          <Input
+            type="textarea"
+            style={{ height: '370px' }}
+            className="UpdateRecipeDirectionsInput"
+            value={recipe.directions}
+            onChange={handleUpdateDirections}
+          />
+        </Col>
+      </Row>
     </Container>
   );
 }

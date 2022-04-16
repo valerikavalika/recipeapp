@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Spinner, Alert } from 'reactstrap';
+import { Container, Spinner, Alert, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import { api } from '../api';
@@ -29,10 +29,14 @@ export function RecipeListPage() {
 
   return (
     <Container>
-      <h1>Recepty</h1>
-      <Link to={`/recipe/NewRecipePage`}>
-        <button>Pridať nový recept</button>
-      </Link>
+      <div style={{ display: 'flex' }}>
+        <h1>Recepty</h1>
+        <div style={{ marginLeft: 'auto' }}>
+          <Link to={`/recipe/NewRecipePage`}>
+            <Button color="secondary">Pridať nový recept</Button>
+          </Link>
+        </div>
+      </div>
       <SearchInput
         className="mb-4"
         value={searchValue}
