@@ -1,5 +1,6 @@
 import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import placeholder from '../images/food-placeholder.png';
 
@@ -12,6 +13,12 @@ export function RecipeCard({ title, preparationTime, slug, sideDish }) {
     const mDisplay = m > 0 ? m + 'min' : '';
     return hDisplay + mDisplay;
   }
+  function changeBackground(e) {
+    e.target.style.background = 'grey';
+  }
+  function changeBackroundToDefault(e) {
+    e.target.style.background = '';
+  }
 
   return (
     <Card className="h-100">
@@ -20,7 +27,10 @@ export function RecipeCard({ title, preparationTime, slug, sideDish }) {
         to={`/recipe/${slug}`}
       >
         <CardImg src={placeholder} alt="Preview" top />
-        <CardBody>
+        <CardBody
+          onMouseOver={changeBackground}
+          onMouseOut={changeBackroundToDefault}
+        >
           <CardTitle tag="h5">{title}</CardTitle>
           <CardSubtitle>
             {convertTime(preparationTime)} {sideDish}

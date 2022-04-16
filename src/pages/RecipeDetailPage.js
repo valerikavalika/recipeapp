@@ -47,8 +47,16 @@ export function RecipeDetailPage() {
   return (
     <Container>
       <div style={{ display: 'flex' }}>
-        <h1>{recipe.title}</h1>
-        <div style={{ marginLeft: 'auto' }}>
+        <h1 style={{ marginBottom: '25px', marginTop: '25px' }}>
+          {recipe.title}
+        </h1>
+        <div
+          style={{
+            marginLeft: 'auto',
+            marginBottom: '25px',
+            marginTop: '25px',
+          }}
+        >
           <Link to={`/recipe/${slug}/RecipeEditPage`}>
             <Button style={{ marginRight: '20px' }} color="secondary">
               Upraviť recept
@@ -61,7 +69,7 @@ export function RecipeDetailPage() {
       </div>
       <Row>
         <Col lg={4}>
-          <h5>{recipe.preparationTime} min</h5>
+          <h5 style={{ marginBottom: '10px' }}>{recipe.preparationTime} min</h5>
           <List type="unstyled">
             {recipe.ingredients?.map((ingredient) => (
               <li key={ingredient._id}>

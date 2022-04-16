@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Container, Spinner, Alert, Input, Row, Col, Button } from 'reactstrap';
+import {
+  Container,
+  Spinner,
+  Alert,
+  Input,
+  Row,
+  Col,
+  Button,
+  InputGroup,
+  InputGroupText,
+} from 'reactstrap';
 import { api } from '../api';
 import { RecipeCard } from '../components/RecipeCard';
 
@@ -70,21 +80,30 @@ export function NewRecipePage() {
             className="NewRecipeTitleInput"
             value={newRecipe.title}
             onChange={handleNewTitle}
+            style={{ marginBottom: '25px', marginTop: '25px' }}
           />
         </Col>
         <Col lg={4}>
-          <Input
-            type="number"
-            className="NewRecipePreparationTimeInput"
-            value={newRecipe.preparationTime}
-            onChange={handleNewPreparationTime}
-          />
+          <h5>Základné údaje</h5>
+          <p>Doba prípravy:</p>
+          <InputGroup style={{ marginBottom: '10px' }}>
+            <Input
+              type="number"
+              className="NewRecipePreparationTimeInput"
+              value={newRecipe.preparationTime}
+              onChange={handleNewPreparationTime}
+            />
+            <InputGroupText>min</InputGroupText>
+          </InputGroup>
+          <p>Počet porcií (ak nahodou nechces papať sam):</p>
           <Input
             type="number"
             className="NewRecipeServingCountnput"
             value={newRecipe.servingCount}
             onChange={handleNewServingCount}
+            style={{ marginBottom: '10px' }}
           />
+          <p>Bude výborne s takou prílohou:</p>
           <Input
             type="number"
             className="NewRecipepSideDishInput"

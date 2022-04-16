@@ -8,6 +8,8 @@ import {
   Col,
   Button,
   ButtonGroup,
+  InputGroup,
+  InputGroupText,
 } from 'reactstrap';
 import { api } from '../api';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -117,23 +119,32 @@ export function RecipeEditPage() {
             className="UpdateRecipeTitleInput"
             value={recipe.title}
             onChange={handleUpdateTitle}
+            style={{ marginBottom: '25px', marginTop: '25px' }}
           />
         </Col>
       </Row>
       <Row>
         <Col lg={4}>
-          <Input
-            type="number"
-            className="UpdateRecipepreparationTimeInput"
-            value={recipe.preparationTime}
-            onChange={handleUpdatePreparationTime}
-          />
+          <h5>Základné údaje</h5>
+          <p>Doba prípravy:</p>
+          <InputGroup style={{ marginBottom: '10px' }}>
+            <Input
+              type="number"
+              className="UpdateRecipepreparationTimeInput"
+              value={recipe.preparationTime}
+              onChange={handleUpdatePreparationTime}
+            />
+            <InputGroupText>min</InputGroupText>
+          </InputGroup>
+          <p>Počet porcií:</p>
           <Input
             type="number"
             className="UpdateRecipeServingCountInput"
             value={recipe.servingCount}
             onChange={handleUpdateServingCount}
+            style={{ marginBottom: '10px' }}
           />
+          <p>Príloha:</p>
           <Input
             type="text"
             className="UpdateRecipeSideDishInput"
