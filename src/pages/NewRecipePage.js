@@ -12,18 +12,23 @@ import {
 } from 'reactstrap';
 import { api } from '../api';
 import { RecipeCard } from '../components/RecipeCard';
+import { useNavigate } from 'react-router-dom';
 
 export function NewRecipePage() {
   const [newRecipe, setNewRecipe] = useState({
     title: 'Názov receptu',
     preparationTime: '0',
     directions: 'Postup',
+    servingCount: '4',
+    sideDish: '',
   });
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   const handleNewRecipe = (event) => {
     api.post(`/recipes`, newRecipe).catch((error) => setError(error));
+    navigate(`/`), { replace: true };
   };
 
   function handleNewTitle(e) {
@@ -68,6 +73,7 @@ export function NewRecipePage() {
         <h2>Vytvoriť nový recept</h2>
         <Button
           style={{ marginLeft: 'auto' }}
+          color="success"
           onClick={(event) => handleNewRecipe(event.target.value)}
         >
           Vytvoriť
@@ -95,7 +101,7 @@ export function NewRecipePage() {
             />
             <InputGroupText>min</InputGroupText>
           </InputGroup>
-          <p>Počet porcií (ak nahodou nechces papať sam):</p>
+          <p>Počet porcií (ale môžeš to zjesť aj sam):</p>
           <Input
             type="number"
             className="NewRecipeServingCountnput"
@@ -105,10 +111,10 @@ export function NewRecipePage() {
           />
           <p>Bude výborne s takou prílohou:</p>
           <Input
-            type="number"
+            type="text"
             className="NewRecipepSideDishInput"
             value={newRecipe.sideDish}
-            onChange={handleNewPreparationTime}
+            onChange={handleNewSideDish}
           />
         </Col>
         <Col lg={8}>

@@ -47,7 +47,7 @@ export function RecipeDetailPage() {
   return (
     <Container>
       <div style={{ display: 'flex' }}>
-        <h1 style={{ marginBottom: '25px', marginTop: '25px' }}>
+        <h1 style={{ marginBottom: '25gipx', marginTop: '25px' }}>
           {recipe.title}
         </h1>
         <div
