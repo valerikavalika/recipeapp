@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import placeholder from '../images/food-placeholder.png';
+import timer from '../images/time.png';
+import spoon from '../images/spoon-and-fork.png';
 
 export function RecipeCard({ title, preparationTime, slug, sideDish }) {
+  // const [show, setShow] = useState(false);
   function convertTime(preparationTime) {
     preparationTime = Number(preparationTime);
     const h = Math.floor(preparationTime / 60);
@@ -19,6 +22,9 @@ export function RecipeCard({ title, preparationTime, slug, sideDish }) {
   function changeBackroundToDefault(e) {
     e.target.style.background = '';
   }
+  // const handleSideDishLoaded = () => {
+  //   setShow(true);
+  // }
 
   return (
     <Card className="h-100">
@@ -33,7 +39,21 @@ export function RecipeCard({ title, preparationTime, slug, sideDish }) {
         >
           <CardTitle tag="h5">{title}</CardTitle>
           <CardSubtitle>
-            {convertTime(preparationTime)} {sideDish}
+            <img src={timer} style={{ height: '18px', marginRight: '5px' }} />
+            {convertTime(preparationTime)}
+            {sideDish ? (
+              <img
+                src={spoon}
+                style={{
+                  height: '18px',
+                  marginRight: '5px',
+                  marginLeft: '5px',
+                }}
+              />
+            ) : (
+              <></>
+            )}
+            {sideDish}
           </CardSubtitle>
         </CardBody>
       </Link>

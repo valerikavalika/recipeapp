@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import { api } from '../api';
 import { useParams, useNavigate } from 'react-router-dom';
+import { EditRecipeMainInfos } from '../components/EditRecipeMainInfos';
 
 export function RecipeEditPage() {
   const { slug, id } = useParams();
@@ -49,7 +50,6 @@ export function RecipeEditPage() {
       title: e.target.value,
     });
   }
-
   function handleUpdatePreparationTime(e) {
     e.preventDefault();
     setRecipe({
@@ -152,11 +152,11 @@ export function RecipeEditPage() {
             onChange={handleUpdateSideDish}
           />
           {/* <Input
-        type="text"
-        className="UpdateRecipeIngredientsInput"
-        value={recipe.ingredients}
-        onChange={handleUpdateIngredients}
-      /> */}
+type="text"
+className="UpdateRecipeIngredientsInput"
+value={recipe.ingredients}
+onChange={handleUpdateIngredients}
+/> */}
         </Col>
         <Col lg={8}>
           <Input

@@ -27,7 +27,14 @@ export function NewRecipePage() {
   const navigate = useNavigate();
 
   const handleNewRecipe = (event) => {
-    api.post(`/recipes`, newRecipe).catch((error) => setError(error));
+    api
+      .post(`/recipes`, newRecipe)
+      .then(() => {
+        if (!unmounted.current) {
+          setLoading(false);
+        }
+      })
+      .catch((error) => setError(error));
     navigate(`/`), { replace: true };
   };
 
@@ -36,35 +43,30 @@ export function NewRecipePage() {
       ...newRecipe,
       title: e.target.value,
     });
-    console.log(newRecipe);
   }
   function handleNewPreparationTime(e) {
     setNewRecipe({
       ...newRecipe,
       preparationTime: e.target.value,
     });
-    console.log(newRecipe);
   }
   function handleNewServingCount(e) {
     setNewRecipe({
       ...newRecipe,
       servingCount: e.target.value,
     });
-    console.log(newRecipe);
   }
   function handleNewSideDish(e) {
     setNewRecipe({
       ...newRecipe,
       sideDish: e.target.value,
     });
-    console.log(newRecipe);
   }
   function handleNewDirections(e) {
     setNewRecipe({
       ...newRecipe,
       directions: e.target.value,
     });
-    console.log(newRecipe);
   }
 
   return (

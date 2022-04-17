@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import { api } from '../api';
 import { RecipeListPage } from './RecipeListPage';
+import timer from '../images/time.png';
 
 export function RecipeDetailPage() {
   const { slug, id } = useParams();
@@ -69,7 +70,12 @@ export function RecipeDetailPage() {
       </div>
       <Row>
         <Col lg={4}>
-          <h5 style={{ marginBottom: '10px' }}>{recipe.preparationTime} min</h5>
+          <div style={{ display: 'flex' }}>
+            <img src={timer} style={{ height: '25px', marginRight: '10px' }} />
+            <h5 style={{ marginBottom: '10px' }}>
+              {recipe.preparationTime} min
+            </h5>
+          </div>
           <List type="unstyled">
             {recipe.ingredients?.map((ingredient) => (
               <li key={ingredient._id}>
