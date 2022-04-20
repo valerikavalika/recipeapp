@@ -15,13 +15,20 @@ import { RecipeCard } from '../components/RecipeCard';
 import { useNavigate } from 'react-router-dom';
 
 export function NewRecipePage() {
+  // const [name, setName] = useState('');
+  // const [amount, setAmount] = useState('');
+  // const [amountUnit, setAmountUnit] = useState('');
+  // const [ingredients, setIngredients] = useState([{ name: '' }]);
+
   const [newRecipe, setNewRecipe] = useState({
     title: 'Názov receptu',
     preparationTime: '0',
     directions: 'Postup',
     servingCount: '4',
     sideDish: '',
+    // ingredients: 'ingredients',
   });
+
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -37,6 +44,16 @@ export function NewRecipePage() {
       .catch((error) => setError(error));
     navigate(`/`), { replace: true };
   };
+
+  // function handleNewIngredientName(e) {
+  //   const insertAt = 1;
+  //   setIngredients([...ingredients.slice(0, insertAt), { name: name }]);
+  //   setNewRecipe({
+  //     ...newRecipe,
+  //     ingredients: ingredients,
+  //   });
+  //   setName('');
+  // }
 
   function handleNewTitle(e) {
     setNewRecipe({
@@ -62,6 +79,19 @@ export function NewRecipePage() {
       sideDish: e.target.value,
     });
   }
+
+  // function handleNewSideDish(e) {
+  //   setNewRecipe({
+  //     ...newRecipe,
+  //     sideDish: e.target.value,
+  //   });
+  // }
+  // function handleNewSideDish(e) {
+  //   setNewRecipe({
+  //     ...newRecipe,
+  //     sideDish: e.target.value,
+  //   });
+  // }
   function handleNewDirections(e) {
     setNewRecipe({
       ...newRecipe,
@@ -119,6 +149,32 @@ export function NewRecipePage() {
             onChange={handleNewSideDish}
           />
         </Col>
+        {/* <Col lg={4}>
+          <h5>Ingrediencie</h5>
+          <p>Pridať ingredienciu</p>
+          <Input
+            type="text"
+            className="NewIngredientName"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <button onClick={handleNewIngredientName}>Pridat</button> */}
+        {/* <p>Potrebné množstvo</p>
+          <Input
+            type="number"
+            className="NewIngredientAmount"
+            // value={newRecipe.ingredients.amount}
+            onChange={e => setAmount(e.target.value)}
+            style={{ marginBottom: '10px' }}
+          />
+          <p>Jednotka</p>
+          <Input
+            type="text"
+            className="NewIngredientAmountUnit"
+            // value={newRecipe.ingredient.amountUnit}
+            onChange={e => setAmountUnit(e.target.value)}
+          /> */}
+        {/* </Col> */}
         <Col lg={8}>
           <Input
             type="textarea"

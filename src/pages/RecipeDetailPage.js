@@ -36,6 +36,14 @@ export function RecipeDetailPage() {
     api.delete(`/recipes/${recipe._id}`).catch((error) => setError(error));
     navigate(`/`), { replace: true };
   };
+  function convertTime(preparationTime) {
+    preparationTime = Number(preparationTime);
+    const h = Math.floor(preparationTime / 60);
+    const m = Math.floor(preparationTime % 60);
+    const hDisplay = h > 0 ? h + 'h ' : '';
+    const mDisplay = m > 0 ? m + 'min' : '';
+    return hDisplay + mDisplay;
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -73,7 +81,7 @@ export function RecipeDetailPage() {
           <div style={{ display: 'flex' }}>
             <img src={timer} style={{ height: '25px', marginRight: '10px' }} />
             <h5 style={{ marginBottom: '10px' }}>
-              {recipe.preparationTime} min
+              {convertTime(recipe.preparationTime)}
             </h5>
           </div>
           <List type="unstyled">
